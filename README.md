@@ -1,4 +1,4 @@
-# BednBite — Flutter Mobile Shell
+# App — Flutter Mobile Shell
 
 A thin native Android + iOS shell around the existing BednBite React app
 (`../react`). Flutter owns native login, secure token storage, biometrics,
