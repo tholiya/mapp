@@ -1,6 +1,6 @@
 # App — Flutter Mobile Shell
 
-A thin native Android + iOS shell around the existing BednBite React app
+A thin native Android + iOS shell around the existing App React app
 (`../react`). Flutter owns native login, secure token storage, biometrics,
 deep links, downloads and a JS bridge; **all business logic stays in React**,
 hosted inside a WebView.
@@ -26,16 +26,16 @@ Pass your real origins at build/run time:
 
 ```bash
 flutter run \
-  --dart-define=APP_URL=https://app.bednbite.com \
-  --dart-define=USER_SERVICE_URL=https://api.bednbite.com \
-  --dart-define=DEEPLINK_SCHEME=bednbite
+  --dart-define=APP_URL=https://app.example.com \
+  --dart-define=USER_SERVICE_URL=https://api.example.com \
+  --dart-define=DEEPLINK_SCHEME=example
 ```
 
 | define | meaning |
 |---|---|
 | `APP_URL` | deployed React origin loaded in the WebView |
 | `USER_SERVICE_URL` | user-service origin for the native login call |
-| `DEEPLINK_SCHEME` | custom scheme (default `bednbite`) |
+| `DEEPLINK_SCHEME` | custom scheme (default `example`) |
 
 Defaults live in [lib/config/app_config.dart](lib/config/app_config.dart).
 
@@ -64,7 +64,7 @@ flutter test
 ```
 lib/
   config/app_config.dart         build-time origins (--dart-define)
-  theme/app_theme.dart           BednBite dark theme + wordmark gradient
+  theme/app_theme.dart           example dark theme + wordmark gradient
   models/                        AuthUser, ApiException
   bridge/bridge_scripts.dart     document-start JS: auth seed + NativeBridge shim
   services/
@@ -105,14 +105,14 @@ useEffect(() => onNativeNavigate((path) => router.push(path)), [router]);
   url_launcher `<queries>`. `minSdk 23` + core-library desugaring
   (`android/app/build.gradle.kts`).
 - **iOS** (`ios/Runner/Info.plist`): camera/mic/FaceID/photo usage strings;
-  ATS `NSAllowsArbitraryLoads=false`; `CFBundleURLTypes` (bednbite scheme);
+  ATS `NSAllowsArbitraryLoads=false`; `CFBundleURLTypes` (example scheme);
   `LSApplicationQueriesSchemes`; iPad orientations retained.
 
 ## Before publishing — finish these
 
 1. **Real domains:** set `APP_URL` / `USER_SERVICE_URL`, and replace
-   `app.bednbite.com` in the AndroidManifest App-Links filter.
-2. **Universal Links (iOS):** add `applinks:app.bednbite.com` to
+   `app.example.com` in the AndroidManifest App-Links filter.
+2. **Universal Links (iOS):** add `applinks:app.example.com` to
    `Runner.entitlements` (Associated Domains capability) and host
    `/.well-known/apple-app-site-association`.
 3. **App Links (Android):** host `/.well-known/assetlinks.json` with your
