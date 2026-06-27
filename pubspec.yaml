@@ -1,0 +1,81 @@
+name: bednbite
+description: "BednBite native mobile shell hosting the React web app."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # WebView + JS bridge (document-start user scripts, file upload, downloads, permissions)
+  flutter_inappwebview: ^6.1.5
+
+  # Secure token storage (Android Keystore / iOS Keychain)
+  flutter_secure_storage: ^9.2.2
+
+  # Native login HTTP client
+  dio: ^5.7.0
+
+  # Biometric auth (Face ID / Touch ID / fingerprint)
+  local_auth: ^2.3.0
+  local_auth_android: ^1.0.46
+  local_auth_darwin: ^1.4.0
+
+  # Deep links (custom scheme + universal/app links)
+  app_links: ^6.3.2
+
+  # Connectivity / offline detection
+  connectivity_plus: ^6.1.0
+
+  # Downloads + open with native viewer
+  path_provider: ^2.1.5
+  open_filex: ^4.5.0
+  permission_handler: ^11.3.1
+
+  # Bridge utilities
+  share_plus: ^10.1.2
+  url_launcher: ^6.3.1
+
+  # Local notifications (download-complete; push later)
+  flutter_local_notifications: ^18.0.1
+
+  # Light DI / state
+  provider: ^6.1.2
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+  # App icon + splash generation from source art
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo/
+
+# ─── App icon generation (run: dart run flutter_launcher_icons) ────────────────
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/logo_icon_white_square.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/logo/logo_icon_adaptive_fg.png"
+  remove_alpha_ios: true
+
+# ─── Splash generation (run: dart run flutter_native_splash:create) ────────────
+flutter_native_splash:
+  color: "#0b0b12"
+  image: "assets/logo/logo_icon.png"
+  android_12:
+    color: "#0b0b12"
+    image: "assets/logo/logo_icon.png"
+  ios: true
+  android: true
